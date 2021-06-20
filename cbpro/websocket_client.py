@@ -98,6 +98,8 @@ class WebsocketClient(object):
         while not self.stop:
             try:
                 data = self.ws.recv()
+                if len(data) == 0:
+                    continue
                 msg = json.loads(data)
             except ValueError as e:
                 self.on_error(e)
